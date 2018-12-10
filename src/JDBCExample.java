@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class JDBCExample {
 	
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://Program Files (x86)//MySQL//Samples and Examples 5.7//Sample Databases//Sakila";
+	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/sakila";
 	//C:\Users\Admin\Downloads\sakila-db\sakila-db
 	
 	static final String USER = "root";
@@ -22,13 +22,13 @@ public class JDBCExample {
 		Statement stmt = null;
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Connecting to Database ...");
 			
 			conn = DriverManager.getConnection(DB_URL, USER , PASS);
 			
 			stmt = conn.createStatement();
-			String sql1 = "Select first_name, last_name FROM Actor where first_name = john";
+			String sql1 = "Select first_name, last_name FROM Actor ";
 			ResultSet rs = stmt.executeQuery(sql1);
 			
 			while(rs.next()) {
@@ -56,6 +56,8 @@ public class JDBCExample {
 				se.printStackTrace();
 			}
 		}
+		System.out.print(results);
+		
 		System.out.println("Goodbye");
 	}
 	
